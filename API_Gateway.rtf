@@ -1,0 +1,141 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Courier New;}{\f1\fnil\fcharset2 Symbol;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sl276\slmult1\qj\b\f0\fs22\par
+\fs24 Microservices/API Gateway\par
+\fs22\par
+MicroServices Architecture\b0  that implements the back end of a particular Web application has multiple number of small services that talk to each other to realize the complete functionality of the application. It also has a front end UI that is exposed to the users, the services offered by the back end. \par
+\par
+Each microservice has a public IP and port number to which it is deployed.This means these services will be exposed to the public through the internet(also exposed to the hackers if not secured).\par
+\par
+To ensure security and to reduce latency in communicating with front end web app and back end services, \b API gateway\b0  can be introduced. \b API gateway itself is a microservice that enables developers to create, publish, maintain and monitor their APIs in any scale.\par
+\par
++Security issue \b0 gets solved by containerizing  all microservices and their IPs,  along with the API gateway in a secured private network with the IP of the gateway only exposed to the public.\par
+\par
+\b +Latency\b0  is improved by handling all routings to multiple services needed to give a consolidated response to front end and its done by API gateway.\par
+\par
+\par
+\b +Authentication of public users and Authorization of Admin,\par
+\par
++Response caching for a specific period,\par
+\par
++Service discovery, \par
+\par
++Retry policies/ Circuit breaker\par
+\par
++Apply limits to number of req/sec \b0 to avoid saturation of a back end service(Rate limiting)\par
+\b\par
+
+\pard\sl276\slmult1\qj +Load balacing : \b0 Redistributing requests(load) in a balanced way among  multiple instances of a microservice or among different microservices.\par
+
+\pard\sl276\slmult1\qj\b\par
++Logging/Tracing of requests and responses \b0 connecting to  different back end services\par
+\par
+\b +Transform req/resp(Query transformation) \b0 at gateway if needed for security or any other purpose.\par
+\par
+\b +IP whitelisting : \b0 IPs will be monitored before providing access to back end so that hacking acan be prevented\b .\par
+\par
+-API gateway crash \b0 will result in failure of entire application(Single point of failure)\b .\b0 By making multiple instances of same gateway , this can be solved.\par
+\par
+Tools Used for implementation: \b Kong/Ambassador, Ocelet/ Azure API managemen\b0 t\par
+\par
+Cloud services like \b AWS/Google.\b0\par
+\par
+\b\fs24 Amazon S3\b0\fs22\par
+\par
+Take an e.g. of Netflix that where they actually stores millions of physical video files that power their content. There have to be those video files and multiple versions of those store somewhere. That's where S3 comes into play. \b Amazon S3 is a storage platform of AWS.\b0  It's specially called \b large unlimited storage bucket(Limit is very high). \b0 So, S3 is perfect place for storing \b doc, movie, music, apps, pictures, anything you want to store,\b0  just dump onto S3. And, it's going to be multiple redundancies and back-up of files that you put there. So, again you are always going to have high availability of any files that you decide to store on S3.\par
+\par
+\b Uses of S3:\b0\par
++Mass storage container\par
++Long-Term Storage\par
+\par
+So, as a total failsafe Amazon S3 is the perfect place for anything that you want to keep for a long time and it has a load of redundancies and it's great because it's basically unlimited storage. So, Amazon S3 is where Netflix stores the thousands of petabytes of video files that they have to store. So, \b Amazon S3 is massive storage bucket\b0 .\par
+\par
+\b Amazon S3 is just a storage service, typically used to store large binary files\b0 . Amazon also has other storage and database services, \b like RDS for relational databases and DynamoDB for NoSQL.\par
+\b0\par
+\b\fs24 Amazon EC2(Elastic Compute Cloud Service)\b0\fs22\par
+\par
+It's just kind of a \b regular computer hosted somewhere\b0  on one of AWS data-center. And, as part of that \b it has a hard-drive or local storage\b0 . And, \b it is not permanent \b0 in the sense that anything that you want to store long term you don't want to store on the hard-drive of EC2 instance because of scaling-up and scaling-down while adding easy to servers, vice-versa\b (maintaining Elasticity property)\b0 . And, so you don't want to have things that you want to keep forever on to the local storage because \b as you add or remove instances then you can potentially lost that information or lose that data\b0 . \b EC2 is meant to deploy your application on server(using its processing power) and that server serve the contents through the S3 and RDS(Relational Database Service), respectively.\b0  Hence, Amazon EC2 good for any type of processing activity.\par
+\par
+Amazon EC2 to launch \b as many or as few virtual servers as you need, configure security and networking, and manage storage. \b0 Amazon EC2 enables you to \b scale up or down to handle changes in requirements or spikes in popularity, reducing your need to forecast traffic.\b0\par
+\par
+An EC2 instance is like \b a remote computer running Windows or Linux and on which you can install whatever software you want,\b0  including a Web server running PHP code and a database server.\par
+\par
+\b\fs24 NGINX Server\par
+\par
+\fs22 Apache and NGINX\b0  are two major players in the web server business spanning 5 percent of web traffic over the internet, but they are different from each other.\par
+\par
+Apache is "Apache HTTP Server". It is an open-source, high-performance web server software developed and maintained by Apache Software Foundation. Apache is designed to create a secure, robust and efficient commercial-grade web server in line with the current HTTP standards.\par
+\b\par
+\b0 Apache remains the first choice among the server administrators because of its \b flexibility, architectural simplicity, power compatibility, and multi-platform support.\b0  It can run on almost all operating systems such as Windows, UNIX, OSX, NetWare, etc. But it is commonly used in combination with Linux.\par
+\par
+\b Apache became the backbone of the WWW (World Wide Web),\b0  it was really on the top of the game, \b but when NGINX comes in the business, the server administrator's choice was changed\b0 .\par
+\par
+\b\fs24 Difference between Apache and NGINX:\par
+\fs22\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\qj\b0 Apache is an open-source HTTP server whereas Nginx is an \b open-source, high-performance asynchronous web server and reverse proxy server.\b0\par
+
+\pard\sl276\slmult1\qj\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\qj Bug fixing, support, maintenance, and application development in Apache HTTP server is managed and maintained by a community of users from around the world and coordinated by the Apache Software Foundation whereas Nginx is handled by a company of the same name which was founded in 2011.\par
+
+\pard\sl276\slmult1\qj\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\qj The major difference between the two is how they handle the client request. While Apache provides a different variety of multiprocessing modules to handle client requests and web traffic, \b Nginx is so designed to handle multiple client requests simultaneously with minimal hardware resources.\b0\par
+
+\pard\sl276\slmult1\qj\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\qj\b In Apache, single thread is associated with only one connection,\b0  whereas \b a single thread in Nginx can handle multiple connections.\b0  All the processes are put in an event loop along with other connections and are managed asynchronously. \b This process consumes less memory, thereby increasing performance.\par
+
+\pard\sl276\slmult1\qj\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\qj Apache HTTP Server has a \b multi-threaded architecture \b0 which \b lacks scalability\b0 . Whereas Nginx follows an \b asynchronous event-driven approach to handle multiple client requests. \b0 Its event-driven architecture is designed to facilitate better performance even under heavy traffic.\par
+
+\pard\sl276\slmult1\qj\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\qj Apache server serves static content using conventional methods and processes dynamic content natively within the web server itself. Nginx, on the other hand, cannot process dynamic content internally. It relies on external processes for execution.\par
+
+\pard\sl276\slmult1\qj\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\qj Nginx runs on modern Unix like systems; however it has limited support for Windows.Apache runs on all Unix like systems such as Linux, BSD, etc. as well as completely supports Windows.\par
+
+\pard\sl276\slmult1\qj\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\qj Apache is designed to be a web server.Nginx is both a web server and a proxy server.\par
+
+\pard\sl276\slmult1\qj\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\qj The performance of Apache for static content is lower than Nginx.Nginx can simultaneously run thousands of connections of static content two times faster than Apache and uses little less memory.\par
+
+\pard\sl276\slmult1\qj\par
+Nginx has a load balancer that balances the load among multiple web servers during heavy traffic. It offers scalability and reduces wait time for users.I also offers on the fly upgrades and imporoves the overall performance.\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+
+\pard\sl276\slmult1\qj\b\par
+\par
+\b0\par
+\par
+\b\par
+\par
+\par
+\par
+\b0\par
+\par
+\par
+\par
+\par
+\par
+
+\pard\sl276\slmult1\par
+\par
+\par
+\par
+\par
+}
+ 
